@@ -15,7 +15,14 @@ while True:
         break
 
     # opens window with camera feed
+
+    # ----- IMAGE PROCESSING -----
     processed_frame = preprocess_image(frame)
+    cards = find_cards(processed_frame)
+    for card in cards:
+        cv2.drawContours(frame, [card], -1, (0, 255, 0), 3)
+
+    # ----- DISPLAY WINDOWS -----
     cv2.imshow('Camera Feed', frame)
     cv2.imshow('Preprocess', processed_frame)
 
